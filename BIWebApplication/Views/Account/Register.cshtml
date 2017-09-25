@@ -12,26 +12,58 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.DevExpress().Label(settings =>
+               {
+                   settings.Name = "UserEmail";
+                   settings.Text = "Email";
+                   settings.ControlStyle.CssClass = "col-md-2 control-label";
+               }).GetHtml()
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.DevExpress().TextBoxFor(model => model.Email,
+                        settings =>
+                        {
+                            settings.Width = 220;
+                            settings.Properties.ValidationSettings.RegularExpression.ValidationExpression = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
+                            settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.RequiredField.ErrorText = "Eamil is Required.";
+                            settings.Properties.ValidationSettings.ErrorTextPosition = DevExpress.Web.ErrorTextPosition.Bottom;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = DevExpress.Web.ErrorDisplayMode.ImageWithText;
+                            settings.ControlStyle.CssClass = "form-control";
+                        }).GetHtml()
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+
+        @Html.DevExpress().Label(settings =>
+               {
+                   settings.Name = "UserPassword";
+                   settings.Text = "Password";
+                   settings.ControlStyle.CssClass = "col-md-2 control-label";
+               }).GetHtml()
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.DevExpress().TextBoxFor(model => model.Password,
+                        settings =>
+                        {
+                            settings.Width = 220;
+                            settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.RequiredField.ErrorText = "Password is Required.";
+                            settings.Properties.ValidationSettings.ErrorTextPosition = DevExpress.Web.ErrorTextPosition.Bottom;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = DevExpress.Web.ErrorDisplayMode.ImageWithText;
+                            settings.ControlStyle.CssClass = "form-control";
+                            settings.Properties.Password = true;
+                        }).GetHtml()
         </div>
     </div>
+    
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+        <div class="col-md-offset-2 col-md-10">           
+            @Html.DevExpress().Button(settings =>
+                    {
+                        settings.Name = "Button";
+                        settings.Text = "Register";
+                        settings.UseSubmitBehavior = true;
+                        settings.ControlStyle.CssClass = "btn btn-default";
+                    }).GetHtml()
         </div>
     </div>
 }

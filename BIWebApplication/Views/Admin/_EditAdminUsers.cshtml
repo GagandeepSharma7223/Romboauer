@@ -1,0 +1,150 @@
+﻿@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvEditing";
+            settings.KeyFieldName = "UserID";
+            settings.CallbackRouteValues = new { Controller = "Admin", Action = "AdminUsers" };
+            //settings.CustomActionRouteValues = new { Controller = "Editing", Action = "ChangeEditModePartial" };
+            //settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Editing", Action = "EditModesAddNewPartial" };
+            //settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Editing", Action = "EditModesUpdatePartial" };
+            settings.SettingsEditing.Mode = DevExpress.Web.GridViewEditingMode.EditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            //settings.SettingsPopup.EditForm.Width = 900;
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowNewButton = false;
+            settings.CommandColumn.ShowDeleteButton = false;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.ShowNewButtonInHeader = true;
+            settings.Columns.Add("UserName");
+            settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+            //settings.Columns.Add("Password");
+
+
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "GroupID";
+                column.Caption = "Group";
+                column.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "GroupName";
+                    p.ValueField = "GroupID";
+                    p.ValueType = typeof(int);
+                    p.DataSource = @ViewBag.GroupDetail;
+                });
+            });
+            settings.Columns.Add(unboundColumn =>
+            {
+                unboundColumn.FieldName = "ChangePassword";
+                unboundColumn.UnboundType = DevExpress.Data.UnboundColumnType.String;
+                unboundColumn.Visible = false;
+                unboundColumn.EditFormSettings.Visible = DefaultBoolean.True;
+                unboundColumn.VisibleIndex = 2;
+                unboundColumn.SetEditItemTemplateContent(c =>
+                {
+                    Html.DevExpress().TextBox(settingsTextBox =>
+                    {
+                        settingsTextBox.Name = c.Column.FieldName;
+                    }).Bind("").Render();
+                });
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "blnUserAdmin";
+                column.Caption = "Admin";
+                column.Visible = false;
+                column.VisibleIndex = 4;
+                column.EditFormSettings.Visible = DefaultBoolean.True;
+                column.ColumnType = MVCxGridViewColumnType.CheckBox;
+
+                //Specify hyperLinkProperties here
+            });
+            //settings.Columns.Add("Admin", MVCxGridViewColumnType.CheckBox);
+            settings.Columns.Add("UserFullName");
+            settings.Columns.Add("Email");
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "PhoneNumber";
+                column.ColumnType = MVCxGridViewColumnType.TextBox;
+                //((MVCxTextBoxProperties)column.PropertiesEdit).MaskSettings.Mask = "(000) 000-0000 x9999";
+                //((MVCxTextBoxProperties)column.PropertiesEdit).MaskSettings.IncludeLiterals = DevExpress.Web.MaskIncludeLiteralsMode.None;
+            });
+            settings.Columns.Add(column =>
+            {
+                column.Caption = "Admin";
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+                column.SetDataItemTemplateContent(container =>
+                {
+                    Html.DevExpress().HyperLink(hyperlink =>
+                    {
+                        var visibleIndex = container.VisibleIndex;
+                        var keyValue = container.KeyValue;
+                        hyperlink.Name = "hl" + keyValue.ToString();
+                        hyperlink.Properties.Text = "Navision Rights";
+                        hyperlink.NavigateUrl = "javascript:OnHyperLinkClick('" + keyValue + "');";
+                    }).Render();
+                });
+            });
+
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "blnInactive";
+                column.Caption = "Remove User";
+                column.Visible = false;
+                column.VisibleIndex = 6;
+                column.EditFormSettings.Visible = DefaultBoolean.True;
+                column.ColumnType = MVCxGridViewColumnType.CheckBox;
+
+                //Specify hyperLinkProperties here
+            });
+            settings.PreRender = (sender, e) =>
+            {
+                ((MVCxGridView)sender).StartEdit(1);
+            };
+            //settings.CellEditorInitialize = (s, e) =>
+            //{
+            //    ASPxEdit editor = (ASPxEdit)e.Editor;
+            //    editor.ValidationSettings.Display = Display.Dynamic;
+            //};
+        });
+
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+
+@grid.Bind(Model).GetHtml()
+
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "AdminUserVariablesCascade";
+    settings.Height = 350;
+    settings.Width = 350;
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("_AdminUserVariablesCascade", null);
+    });
+}).GetHtml()
+
+<script>
+    var currentCustomerID;
+    function OnHyperLinkClick(customerID) {
+        alert(customerID);
+        if (!AdminUserVariablesCascade.IsVisible())
+            AdminUserVariablesCascade.Show();
+    }
+    //function OnDetailGridBeginCallback(s, e) {
+    //    e.customArgs["UserId"] = currentCustomerID;
+    //}
+    //function OnDetailGridEndCallback(s, e) {
+    //    if (!AdminUserVariablesCascade.IsVisible())
+    //        AdminUserVariablesCascade.Show();
+    //}
+</script>

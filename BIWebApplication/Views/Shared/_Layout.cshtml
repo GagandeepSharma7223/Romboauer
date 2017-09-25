@@ -36,6 +36,23 @@
         new Script { ExtensionSuite = ExtensionSuite.RichEdit },
         new Script { ExtensionSuite = ExtensionSuite.SpellChecker }
     )
+    <style>
+        .control-label {
+            font-weight: bold !important;
+        }
+        .navbar-inverse {
+     background-color: white !important;
+    border-color: grey !important;
+}
+        .dxmLite .dxm-main {
+     border: none !important; 
+    background-color: white !important;
+    padding: 6px;
+}
+        .dxm-item.dxm-selected{
+            color:cornflowerblue !important;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -46,14 +63,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a id="TitleLink" href="~/" runat="server">
+                    <img src="~/Content/Images/bi-logo1.png" />
+                    
+                </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+               
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

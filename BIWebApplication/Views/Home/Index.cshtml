@@ -2,19 +2,33 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
 <div class="row">
-@Html.DevExpress().NavBar(
-    settings =>
-    {
-        settings.Name = "myNavBar";
-        settings.Groups.Add("Group1").Items.Add("Item1-1");
-        settings.Groups.Add("Group2").Items.Add("Item2-1");
-        settings.Groups.FindByText("Group2").Expanded = false;
-    }).GetHtml()
+    <script type="text/javascript">
+    $(document).ready(function () {
+        
+      
+    });
+   
+    </script>
+    <div class="vertComponentContainer" style="padding-top:5px; padding-right: 50px; width: 180px;">
+        @Html.DevExpress().Menu(
+        settings =>
+        {
+            settings.Name = "mClientSideAPI";
+            settings.AllowSelectItem = true;
+            settings.EnableClientSideAPI = true;
+            settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
+            
+
+            settings.Items.Add("Visa", "Visa").Selected = true;
+            settings.Items.Add("MasterCard", "MasterCard");
+            settings.Items.Add("Union", "Union");
+            settings.Items.Add("American Express", "American Express");
+            settings.Items.Add("Maestro", "Maestro");
+
+            
+        }).GetHtml()
+    </div>
+    
 </div>

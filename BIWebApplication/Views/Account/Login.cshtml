@@ -15,37 +15,75 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    @Html.DevExpress().Label(settings =>
+               {
+                   settings.Name = "UserEmail";
+                   settings.Text = "Email";
+                   settings.ControlStyle.CssClass = "col-md-2 control-label";
+               }).GetHtml()
                     <div class="col-md-10">
                         @Html.DevExpress().TextBoxFor(model => model.Email,
                         settings =>
                         {
-                            settings.Width = 170;
+                            settings.Width = 220;
                             settings.Properties.ValidationSettings.RegularExpression.ValidationExpression = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
-                            //settings.Properties.DisplayFormatString = "[ 00 - 00 - 00 ]";
+                            settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.RequiredField.ErrorText = "Eamil is Required.";
+                            settings.Properties.ValidationSettings.ErrorTextPosition = DevExpress.Web.ErrorTextPosition.Bottom;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = DevExpress.Web.ErrorDisplayMode.ImageWithText;
+                            settings.ControlStyle.CssClass = "form-control";
                         }).GetHtml()
                         @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })*@
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+
+                    @Html.DevExpress().Label(settings =>
+               {
+                   settings.Name = "UserPassword";
+                   settings.Text = "Password";
+                   settings.ControlStyle.CssClass = "col-md-2 control-label";
+               }).GetHtml()
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.DevExpress().TextBoxFor(model => model.Password,
+                        settings =>
+                        {
+                            settings.Width = 220;
+                            settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.RequiredField.ErrorText = "Password is Required.";
+                            settings.Properties.ValidationSettings.ErrorTextPosition = DevExpress.Web.ErrorTextPosition.Bottom;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = DevExpress.Web.ErrorDisplayMode.ImageWithText;
+                            settings.ControlStyle.CssClass = "form-control";
+                            settings.Properties.Password = true;
+                        }).GetHtml()
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                            @Html.DevExpress().CheckBoxFor(model => model.RememberMe,
+    settings =>
+    {
+
+        settings.Checked = true;
+        settings.Text = "Remember me?";
+
+    }
+).GetHtml()
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        @Html.DevExpress().Button(settings =>
+                    {
+                        settings.Name = "Button";
+                        settings.Text = "Log In";
+                        settings.UseSubmitBehavior = true;
+                        settings.ControlStyle.CssClass = "btn btn-default";
+                    }).GetHtml()
                     </div>
                 </div>
                 <p>
@@ -64,6 +102,7 @@
         </section>
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

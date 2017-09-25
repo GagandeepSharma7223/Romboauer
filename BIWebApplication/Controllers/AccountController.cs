@@ -66,7 +66,7 @@ namespace BIWebApplication.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login([ModelBinder(typeof(DevExpress.Web.Mvc.DevExpressEditorsBinder))] LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
