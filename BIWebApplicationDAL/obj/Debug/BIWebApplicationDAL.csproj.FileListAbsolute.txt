@@ -12,3 +12,17 @@ E:\Romboauer\BIWebApplicationDAL\bin\Debug\System.Data.SQLite.xml
 E:\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.csprojResolveAssemblyReference.cache
 E:\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.dll
 E:\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.pdb
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\BIWebApplicationDAL.dll.config
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\BIWebApplicationDAL.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\BIWebApplicationDAL.pdb
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\EntityFramework.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\System.Data.SQLite.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\EntityFramework.xml
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\bin\Debug\System.Data.SQLite.xml
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.csprojResolveAssemblyReference.cache
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.dll
+D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.pdb

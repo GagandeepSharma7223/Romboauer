@@ -44,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BIWebApplicationBLL">
-      <HintPath>..\BIWebApplicationBLL\bin\Debug\BIWebApplicationBLL.dll</HintPath>
-    </Reference>
     <Reference Include="BIWebApplicationDAL">
       <HintPath>..\BIWebApplicationDAL\bin\Debug\BIWebApplicationDAL.dll</HintPath>
     </Reference>
@@ -404,7 +401,12 @@
     <Content Include="Views\Admin\_AdminUserVariablesCascade.cshtml" />
     <Content Include="Views\Admin\_AdminUsersVariables.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BIWebApplicationBLL\BIWebApplicationBLL.csproj">
+      <Project>{1b66b82e-71f1-4931-809a-358e44073b74}</Project>
+      <Name>BIWebApplicationBLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

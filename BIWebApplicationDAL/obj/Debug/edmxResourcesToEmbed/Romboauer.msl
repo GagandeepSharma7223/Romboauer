@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BIWebApplicationModelStoreContainer" CdmEntityContainer="BIWebApplicationEntities">
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompanies">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblCompany">
+        <MappingFragment StoreEntitySet="tblCompany">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGroupMenus">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblGroupMenu">
+        <MappingFragment StoreEntitySet="tblGroupMenu">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="MenuText" ColumnName="MenuText" />
+          <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGroups">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblGroup">
+        <MappingFragment StoreEntitySet="tblGroups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblQueryColumns">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblQueryColumn">
+        <MappingFragment StoreEntitySet="tblQueryColumns">
+          <ScalarProperty Name="ColumnID" ColumnName="ColumnID" />
+          <ScalarProperty Name="QueryID" ColumnName="QueryID" />
+          <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+          <ScalarProperty Name="ColumnHeader" ColumnName="ColumnHeader" />
+          <ScalarProperty Name="ColumnOrder" ColumnName="ColumnOrder" />
+          <ScalarProperty Name="ColumnDataType" ColumnName="ColumnDataType" />
+          <ScalarProperty Name="ColumnWidth" ColumnName="ColumnWidth" />
+          <ScalarProperty Name="ColumnFormat" ColumnName="ColumnFormat" />
+          <ScalarProperty Name="DetailColumn" ColumnName="DetailColumn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblQueryConnections">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblQueryConnection">
+        <MappingFragment StoreEntitySet="tblQueryConnections">
+          <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
+          <ScalarProperty Name="ConnectionName" ColumnName="ConnectionName" />
+          <ScalarProperty Name="ConnectionValue" ColumnName="ConnectionValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblQueryDetails">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblQueryDetail">
+        <MappingFragment StoreEntitySet="tblQueryDetail">
+          <ScalarProperty Name="DetailQueryID" ColumnName="DetailQueryID" />
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="ParameterColumnID" ColumnName="ParameterColumnID" />
+          <ScalarProperty Name="ParameterValue" ColumnName="ParameterValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblQueryMains">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblQueryMain">
+        <MappingFragment StoreEntitySet="tblQueryMain">
+          <ScalarProperty Name="QueryID" ColumnName="QueryID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
+          <ScalarProperty Name="QueryFrom" ColumnName="QueryFrom" />
+          <ScalarProperty Name="QueryWhereAdd" ColumnName="QueryWhereAdd" />
+          <ScalarProperty Name="QueryOrder" ColumnName="QueryOrder" />
+          <ScalarProperty Name="QueryType" ColumnName="QueryType" />
+          <ScalarProperty Name="blnRunFilterFirst" ColumnName="blnRunFilterFirst" />
+          <ScalarProperty Name="DetailQueryID" ColumnName="DetailQueryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblQueryParameters">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblQueryParameter">
+        <MappingFragment StoreEntitySet="tblQueryParameters">
+          <ScalarProperty Name="ParameterID" ColumnName="ParameterID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="ParameterType" ColumnName="ParameterType" />
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="ParameterLabel" ColumnName="ParameterLabel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="BIWebApplicationModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="ASPNetUsersID" ColumnName="ASPNetUsersID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+          <ScalarProperty Name="UserField1" ColumnName="UserField1" />
+          <ScalarProperty Name="UserField2" ColumnName="UserField2" />
+          <ScalarProperty Name="UserField3" ColumnName="UserField3" />
+          <ScalarProperty Name="UserField4" ColumnName="UserField4" />
+          <ScalarProperty Name="blnInactive" ColumnName="blnInactive" />
+          <ScalarProperty Name="blnUserAdmin" ColumnName="blnUserAdmin" />
+          <ScalarProperty Name="blnChangePassword" ColumnName="blnChangePassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="BIWebApplicationModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

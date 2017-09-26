@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BIWebApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClaimType" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ClaimValue" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserClaims_0_0" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserLogins_0_0" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="EmailConfirmed" Type="Byte" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Byte" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Byte" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" />
+    <Property Name="LockoutEnabled" Type="Byte" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActivated" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_AspNetUserClaims_0_0" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_AspNetUserLogins_0_0" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="tblCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyLogo" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblGroupMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupID" Type="Int64" />
+    <Property Name="MenuText" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="MenuOrder" Type="Int64" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int64" />
+    <Property Name="GroupName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblQueryColumn">
+    <Key>
+      <PropertyRef Name="ColumnID" />
+    </Key>
+    <Property Name="ColumnID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QueryID" Type="Int64" />
+    <Property Name="ColumnName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ColumnHeader" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ColumnOrder" Type="Int64" />
+    <Property Name="ColumnDataType" Type="Int64" />
+    <Property Name="ColumnWidth" Type="Int64" />
+    <Property Name="ColumnFormat" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="DetailColumn" Type="Int64" />
+  </EntityType>
+  <EntityType Name="tblQueryConnection">
+    <Key>
+      <PropertyRef Name="ConnectionID" />
+    </Key>
+    <Property Name="ConnectionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConnectionName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ConnectionValue" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblQueryDetail">
+    <Key>
+      <PropertyRef Name="DetailQueryID" />
+    </Key>
+    <Property Name="DetailQueryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParameterName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ParameterColumnID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ParameterValue" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblQueryMain">
+    <Key>
+      <PropertyRef Name="QueryID" />
+    </Key>
+    <Property Name="QueryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuID" Type="Int64" />
+    <Property Name="ConnectionID" Type="Int64" />
+    <Property Name="QueryFrom" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="QueryWhereAdd" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="QueryOrder" Type="Int64" />
+    <Property Name="QueryType" Type="Int64" />
+    <Property Name="blnRunFilterFirst" Type="Int64" />
+    <Property Name="DetailQueryID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="tblQueryParameter">
+    <Key>
+      <PropertyRef Name="ParameterID" />
+    </Key>
+    <Property Name="ParameterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupID" Type="Int64" />
+    <Property Name="ParameterType" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ParameterName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="ParameterLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int64" />
+    <Property Name="ASPNetUsersID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="GroupID" Type="Int64" />
+    <Property Name="UserFullName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="UserField1" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="UserField2" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="UserField3" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="UserField4" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="blnInactive" Type="Int64" />
+    <Property Name="blnUserAdmin" Type="Int64" />
+    <Property Name="blnChangePassword" Type="Int64" />
+  </EntityType>
+  <Association Name="FK_AspNetUserClaims_0_0">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserLogins_0_0">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="BIWebApplicationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="tblCompanies" EntityType="Self.tblCompany" />
+    <EntitySet Name="tblGroupMenus" EntityType="Self.tblGroupMenu" />
+    <EntitySet Name="tblGroups" EntityType="Self.tblGroup" />
+    <EntitySet Name="tblQueryColumns" EntityType="Self.tblQueryColumn" />
+    <EntitySet Name="tblQueryConnections" EntityType="Self.tblQueryConnection" />
+    <EntitySet Name="tblQueryDetails" EntityType="Self.tblQueryDetail" />
+    <EntitySet Name="tblQueryMains" EntityType="Self.tblQueryMain" />
+    <EntitySet Name="tblQueryParameters" EntityType="Self.tblQueryParameter" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK_AspNetUserClaims_0_0" Association="Self.FK_AspNetUserClaims_0_0">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserLogins_0_0" Association="Self.FK_AspNetUserLogins_0_0">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

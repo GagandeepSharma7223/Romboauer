@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BIWebApplicationModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=D:\Projects\Carmody Technologies\BIWebApplication.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimType" Type="varchar" MaxLength="256" />
+    <Property Name="ClaimValue" Type="varchar" MaxLength="256" />
+    <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="tinyint" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="SecurityStamp" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="PhoneNumberConfirmed" Type="tinyint" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="tinyint" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="tinyint" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="IsActivated" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="CompanyLogo" Type="nvarchar" MaxLength="2147483647" />
+  </EntityType>
+  <EntityType Name="tblGroupMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="integer" />
+    <Property Name="MenuText" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="MenuOrder" Type="integer" />
+  </EntityType>
+  <EntityType Name="tblGroups">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="integer" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="2147483647" />
+  </EntityType>
+  <EntityType Name="tblQueryColumns">
+    <Key>
+      <PropertyRef Name="ColumnID" />
+    </Key>
+    <Property Name="ColumnID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QueryID" Type="integer" />
+    <Property Name="ColumnName" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ColumnHeader" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ColumnOrder" Type="integer" />
+    <Property Name="ColumnDataType" Type="integer" />
+    <Property Name="ColumnWidth" Type="integer" />
+    <Property Name="ColumnFormat" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="DetailColumn" Type="integer" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'main.tblQueryColumnsDataFormat' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblQueryColumnsDataFormat">
+          <Property Name="ColumnID" Type="integer" />
+          <Property Name="ColumnDataFormula" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="ColumnDataFormatBackColor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="ColumnDataFormatForeColor" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'main.tblQueryColumnsStyleValues' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblQueryColumnsStyleValues">
+          <Property Name="ColumnID" Type="integer" />
+          <Property Name="Formula" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="HighlightType" Type="integer" />
+          <Property Name="HighlightValue" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>-->
+  <EntityType Name="tblQueryConnections">
+    <Key>
+      <PropertyRef Name="ConnectionID" />
+    </Key>
+    <Property Name="ConnectionID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConnectionName" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ConnectionValue" Type="nvarchar" MaxLength="2147483647" />
+  </EntityType>
+  <EntityType Name="tblQueryDetail">
+    <Key>
+      <PropertyRef Name="DetailQueryID" />
+    </Key>
+    <Property Name="DetailQueryID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParameterName" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ParameterColumnID" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ParameterValue" Type="nvarchar" MaxLength="2147483647" />
+  </EntityType>
+  <EntityType Name="tblQueryMain">
+    <Key>
+      <PropertyRef Name="QueryID" />
+    </Key>
+    <Property Name="QueryID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuID" Type="integer" />
+    <Property Name="ConnectionID" Type="integer" />
+    <Property Name="QueryFrom" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="QueryWhereAdd" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="QueryOrder" Type="integer" />
+    <Property Name="QueryType" Type="integer" />
+    <Property Name="blnRunFilterFirst" Type="integer" />
+    <Property Name="DetailQueryID" Type="integer" />
+  </EntityType>
+  <EntityType Name="tblQueryParameters">
+    <Key>
+      <PropertyRef Name="ParameterID" />
+    </Key>
+    <Property Name="ParameterID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="integer" />
+    <Property Name="ParameterType" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ParameterName" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="ParameterLabel" Type="nvarchar" MaxLength="2147483647" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'main.tblQueryParametersBridge' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblQueryParametersBridge">
+          <Property Name="ParameterID" Type="integer" />
+          <Property Name="QueryID" Type="integer" />
+        </EntityType>-->
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="integer" />
+    <Property Name="ASPNetUsersID" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="GroupID" Type="integer" />
+    <Property Name="UserFullName" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="UserField1" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="UserField2" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="UserField3" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="UserField4" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="blnInactive" Type="integer" />
+    <Property Name="blnUserAdmin" Type="integer" />
+    <Property Name="blnChangePassword" Type="integer" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'main.tblUsersCount' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblUsersCount">
+          <Property Name="UserID" Type="integer" />
+          <Property Name="ReportCount" Type="integer" />
+          <Property Name="intWeek" Type="integer" />
+          <Property Name="intMonth" Type="integer" />
+          <Property Name="intYear" Type="integer" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'main.tblUsersQueryParameters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblUsersQueryParameters">
+          <Property Name="UserID" Type="integer" />
+          <Property Name="ParameterID" Type="integer" />
+          <Property Name="ParameterValue" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>-->
+  <Association Name="FK_AspNetUserClaims_0_0">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserLogins_0_0">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_0_0">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_1_0">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BIWebApplicationModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" store:Type="Tables" />
+    <EntitySet Name="tblCompany" EntityType="Self.tblCompany" store:Type="Tables" />
+    <EntitySet Name="tblGroupMenu" EntityType="Self.tblGroupMenu" store:Type="Tables" />
+    <EntitySet Name="tblGroups" EntityType="Self.tblGroups" store:Type="Tables" />
+    <EntitySet Name="tblQueryColumns" EntityType="Self.tblQueryColumns" store:Type="Tables" />
+    <EntitySet Name="tblQueryConnections" EntityType="Self.tblQueryConnections" store:Type="Tables" />
+    <EntitySet Name="tblQueryDetail" EntityType="Self.tblQueryDetail" store:Type="Tables" />
+    <EntitySet Name="tblQueryMain" EntityType="Self.tblQueryMain" store:Type="Tables" />
+    <EntitySet Name="tblQueryParameters" EntityType="Self.tblQueryParameters" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUserClaims_0_0" Association="Self.FK_AspNetUserClaims_0_0">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserLogins_0_0" Association="Self.FK_AspNetUserLogins_0_0">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_0_0" Association="Self.FK_AspNetUserRoles_0_0">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_1_0" Association="Self.FK_AspNetUserRoles_1_0">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

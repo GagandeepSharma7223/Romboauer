@@ -7,9 +7,9 @@
         {
             settings.Name = "gvEditing";
             settings.KeyFieldName = "UserID";
-            settings.CallbackRouteValues = new { Controller = "Admin", Action = "AdminUsers" };
-            //settings.CustomActionRouteValues = new { Controller = "Editing", Action = "ChangeEditModePartial" };
-            //settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Editing", Action = "EditModesAddNewPartial" };
+            settings.CallbackRouteValues = new { Controller = "Admin", Action = "EditModesPartial" };
+            //settings.CustomActionRouteValues = new { Controller = "Admin", Action = "ChangeEditModePartial" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Admin", Action = "AddUser" };
             //settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Editing", Action = "EditModesUpdatePartial" };
             settings.SettingsEditing.Mode = DevExpress.Web.GridViewEditingMode.EditForm;
             settings.SettingsBehavior.ConfirmDelete = true;
@@ -34,7 +34,7 @@
                     p.TextField = "GroupName";
                     p.ValueField = "GroupID";
                     p.ValueType = typeof(int);
-                    p.DataSource = @ViewBag.GroupDetail;
+                    p.DataSource = ViewBag.GroupDetail;
                 });
             });
             settings.Columns.Add(unboundColumn =>

@@ -1,5 +1,9 @@
 ﻿using BIWebApplication.Models;
+using BIWebApplicationBLL.Interface;
+using BIWebApplicationBLL.Models;
+using BIWebApplicationBLL.Repository;
 using BIWebApplicationDAL;
+using DevExpress.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +14,13 @@ namespace BIWebApplication.Controllers
 {
     public class AdminController : Controller
     {
+
+        private IUserRepository repo;
+
+        public AdminController()
+        {
+            repo = new UserRepository();
+        }
         // GET: Admin
         public ActionResult Index()
         {
@@ -18,42 +29,41 @@ namespace BIWebApplication.Controllers
 
         public ActionResult AdminUsers()
         {
-             List<AdminUserModel> lstUsers = new List<AdminUserModel>();
-            using (var db = new BIWebModel())
-            {
-                var result = from a in db.tblGroups                             
-                             select new 
-                             {
-                                  a.GroupID,
-                                  a.GroupName
-                                
-                             };
-
-                ViewBag.GroupDetail = result.ToList();
-
-               
-
-                var resultUsers = from a in db.tblUsers
-                                  join g in db.tblGroups on a.GroupID equals g.GroupID
-                                  join c in db.AspNetUsers on a.ASPNetUsersID equals c.Id
-                                  select new AdminUserModel
-                                  {
-                                  UserID=    a.UserID,
-                                      ASPNetUsersID =     a.ASPNetUsersID,
-                                      UserName=  c.UserName,
-                                      UserFullName=  a.UserFullName,
-                                      GroupID=   g.GroupID,
-                                      GroupName=     g.GroupName,
-                                      Email=  c.Email,
-                                      PhoneNumber=  c.PhoneNumber,
-                                      blnInactive= a.blnInactive,
-                                      blnUserAdmin= a.blnUserAdmin
-                                  };
-
-                lstUsers = resultUsers.ToList();
-            }
-            
+            List<UserModel> lstUsers = new List<UserModel>();
+            ViewBag.GroupDetail = repo.GetGroups();
+            lstUsers = repo.GetUsers();
+            var res = repo.GetUsers();
             return View(lstUsers);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult EditModesPartial()
+        {
+            ViewBag.GroupDetail = repo.GetGroups();
+            return PartialView("_EditAdminUsers", repo.GetUsers());
+        }
+
+        //public ActionResult ChangeEditModePartial(GridViewEditingMode editMode)
+        //{
+        //    GridViewEditingDemosHelper.EditMode = editMode;
+        //    return PartialView("EditModesPartial", repo.GetUsers());
+        //}
+        public ActionResult AddUser(UserModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    repo.AddUser(user);
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("_EditAdminUsers", repo.GetUsers());
         }
     }
 }
