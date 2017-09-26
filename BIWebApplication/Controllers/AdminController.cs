@@ -4,11 +4,16 @@ using BIWebApplicationBLL.Models;
 using BIWebApplicationBLL.Repository;
 using BIWebApplicationDAL;
 using DevExpress.Web;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
 
 namespace BIWebApplication.Controllers
 {
@@ -16,10 +21,16 @@ namespace BIWebApplication.Controllers
     {
 
         private IUserRepository repo;
+        private ApplicationUserManager _userManager;
 
         public AdminController()
         {
             repo = new UserRepository();
+        }
+
+        public AdminController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;            
         }
         // GET: Admin
         public ActionResult Index()
@@ -48,13 +59,46 @@ namespace BIWebApplication.Controllers
         //    GridViewEditingDemosHelper.EditMode = editMode;
         //    return PartialView("EditModesPartial", repo.GetUsers());
         //}
-        public ActionResult AddUser(UserModel user)
+        public ApplicationUserManager UserManager
         {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        public async Task<ActionResult> AddUser(UserModel user)
+        {
+
+            //long userId = (long)System.Web.HttpContext.Current.Session["UserID"]; //HttpContext.Current.Session["UserID"];
+
+            //user.UserID = userId;
+            //user.CompanyId = repo.GetCompanyID(userId);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    repo.AddUser(user);
+                    string name = user.UserName.Replace('"', ' ').Trim();
+                    string email = user.Email.Replace('"', ' ').Trim();
+
+                    var usernew = new ApplicationUser { UserName = name, Email = email };
+                    var result =  UserManager.Create(usernew, user.ChangePassword);
+                    if (result.Succeeded)
+                    {
+                        user.ASPNetUsersID = usernew.Id;
+
+
+
+
+                        repo.AddUser(user);
+                    }
+
+
+                       
                 }
                 catch (Exception e)
                 {

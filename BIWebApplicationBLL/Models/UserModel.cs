@@ -19,5 +19,8 @@ namespace BIWebApplicationBLL.Models
         public string PhoneNumberFormated { get; set; }
         public long? blnInactive { get; set; }
         public long? blnUserAdmin { get; set; }
+
+        public long? CompanyId { get; set; }
+        public string ChangePassword { get; set; }
     }
 }

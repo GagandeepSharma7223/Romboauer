@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BIWebApplication.Models;
+using BIWebApplicationBLL.Repository;
 
 namespace BIWebApplication.Controllers
 {
@@ -76,9 +77,13 @@ namespace BIWebApplication.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = UserManager.Find(model.Email, model.Password);
             switch (result)
             {
                 case SignInStatus.Success:
+                    int userID = Cls_User_Profile.GetUserID(user.UserName.Trim());
+
+                    System.Web.HttpContext.Current.Session["UserID"] = userID;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

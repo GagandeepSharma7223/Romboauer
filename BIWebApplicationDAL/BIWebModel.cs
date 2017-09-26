@@ -8,7 +8,7 @@ namespace BIWebApplicationDAL
     public partial class BIWebModel : DbContext
     {
         public BIWebModel()
-            : base("name=DefaultConnection")
+            : base("name=BIWebModel")
         {
         }
 
