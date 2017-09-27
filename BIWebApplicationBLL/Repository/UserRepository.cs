@@ -52,6 +52,19 @@ namespace BIWebApplicationBLL.Repository
                 }).ToList();
             }
         }
+
+        public long GetUserId(string aspuserId)
+        {
+            using (var _context = new BIWebModel())
+            {
+                long uID = (from c in _context.tblUsers
+                               where c.ASPNetUsersID == aspuserId
+                              select c.UserID)
+                         .FirstOrDefault();
+
+                return uID;
+            }
+        }
         public long? GetCompanyID( long userId)
         {
             using (var _context = new BIWebModel())
@@ -92,7 +105,36 @@ namespace BIWebApplicationBLL.Repository
                 return false;
             }
         }
+        public bool UpdateUser(UserModel model)
+        {
+            try
+            {
+                using (var _context = new BIWebModel())
+                {
+                    tblUser tblUsers = _context.tblUsers.Where(x=> x.UserID == model.UserID).FirstOrDefault() ;
 
+                    AspNetUser tblAspnetUsers = _context.AspNetUsers.Where(x => x.Id == model.ASPNetUsersID).FirstOrDefault();
+                    tblAspnetUsers.PhoneNumber = model.PhoneNumber;
+                    tblUsers.ASPNetUsersID = model.ASPNetUsersID;
+                    tblUsers.UserFullName = model.UserFullName;
+                    tblUsers.GroupID = model.GroupID;
+                    tblUsers.blnUserAdmin = model.blnUserAdmin;
+                    tblUsers.blnInactive = model.blnInactive;
+                    tblUsers.blnChangePassword = 0;
+                    tblUsers.CompanyID = 1;
+
+                   
+
+
+                    _context.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public void Dispose()
         {
            /// _context.Dispose() ;

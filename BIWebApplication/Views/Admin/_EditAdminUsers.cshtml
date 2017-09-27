@@ -10,7 +10,7 @@
             settings.CallbackRouteValues = new { Controller = "Admin", Action = "EditModesPartial" };
             //settings.CustomActionRouteValues = new { Controller = "Admin", Action = "ChangeEditModePartial" };
             settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Admin", Action = "AddUser" };
-            //settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Editing", Action = "EditModesUpdatePartial" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Admin", Action = "UpdateUser" };
             settings.SettingsEditing.Mode = DevExpress.Web.GridViewEditingMode.EditForm;
             settings.SettingsBehavior.ConfirmDelete = true;
             //settings.SettingsPopup.EditForm.Width = 900;
@@ -19,9 +19,9 @@
             settings.CommandColumn.ShowDeleteButton = false;
             settings.CommandColumn.ShowEditButton = true;
             settings.CommandColumn.ShowNewButtonInHeader = true;
-            settings.Columns.Add("UserName");
+            settings.Columns.Add("UserName")  ;
             settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-            //settings.Columns.Add("Password");
+            settings.Columns.Add("UserID").SetColVisible(false);
 
 
 
@@ -66,7 +66,24 @@
             });
             //settings.Columns.Add("Admin", MVCxGridViewColumnType.CheckBox);
             settings.Columns.Add("UserFullName");
+
             settings.Columns.Add("Email");
+
+            
+            settings.CustomJSProperties = (sender, e) =>
+            {
+                MVCxGridView gridView = (MVCxGridView)sender;
+                if (gridView.EditingRowVisibleIndex > -1)
+                {
+                    e.Properties["cpMiddleName"] = gridView.GetRowValues(gridView.EditingRowVisibleIndex, "ASPNetUsersID");
+
+
+                }
+            };
+
+            settings.ClientSideEvents.BeginCallback = "function(s, e) { if(s.cpMiddleName) e.customArgs['ASPNetUsersID'] =  s.cpMiddleName; }";
+
+            
             settings.Columns.Add(column =>
             {
                 column.FieldName = "PhoneNumber";

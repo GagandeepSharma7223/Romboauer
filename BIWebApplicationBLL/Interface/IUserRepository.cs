@@ -13,5 +13,7 @@ namespace BIWebApplicationBLL.Interface
         List<GroupModel> GetGroups();
         bool AddUser(UserModel model);
         long? GetCompanyID(long userId);
+        long GetUserId(string aspuserId);
+        bool UpdateUser(UserModel model);
     }
 }

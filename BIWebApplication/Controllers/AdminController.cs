@@ -42,8 +42,7 @@ namespace BIWebApplication.Controllers
         {
             List<UserModel> lstUsers = new List<UserModel>();
             ViewBag.GroupDetail = repo.GetGroups();
-            lstUsers = repo.GetUsers();
-            var res = repo.GetUsers();
+            lstUsers = repo.GetUsers();            
             return View(lstUsers);
         }
 
@@ -54,11 +53,6 @@ namespace BIWebApplication.Controllers
             return PartialView("_EditAdminUsers", repo.GetUsers());
         }
 
-        //public ActionResult ChangeEditModePartial(GridViewEditingMode editMode)
-        //{
-        //    GridViewEditingDemosHelper.EditMode = editMode;
-        //    return PartialView("EditModesPartial", repo.GetUsers());
-        //}
         public ApplicationUserManager UserManager
         {
             get
@@ -72,32 +66,32 @@ namespace BIWebApplication.Controllers
         }
         public async Task<ActionResult> AddUser(UserModel user)
         {
-
-            //long userId = (long)System.Web.HttpContext.Current.Session["UserID"]; //HttpContext.Current.Session["UserID"];
-
-            //user.UserID = userId;
-            //user.CompanyId = repo.GetCompanyID(userId);
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string name = user.UserName.Replace('"', ' ').Trim();
                     string email = user.Email.Replace('"', ' ').Trim();
-
-                    var usernew = new ApplicationUser { UserName = name, Email = email };
-                    var result =  UserManager.Create(usernew, user.ChangePassword);
-                    if (result.Succeeded)
+                    if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(user.ChangePassword) && !string.IsNullOrEmpty(user.UserName) && !string.IsNullOrEmpty(user.UserFullName) )
                     {
-                        user.ASPNetUsersID = usernew.Id;
+                        string name = user.UserName.Replace('"', ' ').Trim();
+                     
 
+                        var usernew = new ApplicationUser { UserName = name, Email = email };
+                        var result = UserManager.Create(usernew, user.ChangePassword);
+                        if (result.Succeeded)
+                        {
+                            user.ASPNetUsersID = usernew.Id;
+                            string fullname = user.UserFullName.Replace('"', ' ').Trim();
 
+                            user.UserFullName = fullname;
 
+                            repo.AddUser(user);
+                        }
 
-                        repo.AddUser(user);
                     }
-
-
+                    else {
+                        ViewData["EditError"] = "Please, correct all errors.";
+                    }
                        
                 }
                 catch (Exception e)
@@ -107,6 +101,56 @@ namespace BIWebApplication.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
+            ViewBag.GroupDetail = repo.GetGroups();
+          
+            return PartialView("_EditAdminUsers", repo.GetUsers());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdateUser(UserModel user)
+        {
+
+            user.UserID = repo.GetUserId(user.ASPNetUsersID);
+            
+                try
+                {
+                    string name = user.UserName.Replace('"', ' ').Trim();
+                    string email = user.Email.Replace('"', ' ').Trim();
+                string phone = ""  ;
+                if(!string.IsNullOrEmpty(user.PhoneNumber))
+                {
+                    phone = user.PhoneNumber.Replace('"', ' ').Trim();
+                }
+                if (!string.IsNullOrEmpty(user.ChangePassword))
+                {
+                    var userStore = new UserStore<IdentityUser>();
+                    var manager = new UserManager<IdentityUser>(userStore);
+                    IdentityUser cUser = manager.FindById(user.ASPNetUsersID);
+                    cUser.PasswordHash = manager.PasswordHasher.HashPassword(user.ChangePassword);
+                    var result = manager.UpdateAsync(cUser).Result;
+                }
+                if (!string.IsNullOrEmpty(user.UserName) && !string.IsNullOrEmpty(user.UserFullName))
+                {
+                    string fullname = user.UserFullName.Replace('"', ' ').Trim();
+
+                    user.UserFullName = fullname;
+                    user.Email  = email;
+                    user.PhoneNumber = phone;
+                    user.UserName = name;
+                    repo.UpdateUser(user);
+
+                }
+
+
+            }
+            catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+           
+            
+            ViewBag.GroupDetail = repo.GetGroups();
+
             return PartialView("_EditAdminUsers", repo.GetUsers());
         }
     }
