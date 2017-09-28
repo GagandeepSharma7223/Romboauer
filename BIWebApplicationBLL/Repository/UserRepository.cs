@@ -135,6 +135,40 @@ namespace BIWebApplicationBLL.Repository
                 return false;
             }
         }
+
+        public  List<Cls_Menu> LoadMenuDataTable(long strUserID)
+        {
+            List<Cls_Menu> obj_dataTable = new List<Cls_Menu>();
+            try
+            {
+                using (var db = new BIWebModel())
+                {
+                    var result = from a in db.tblUsers
+                                 join h in db.tblGroupMenus on a.GroupID equals h.GroupID
+                                 join c in db.tblQueryMains on h.MenuID equals c.MenuID
+                                 join cg in db.tblQueryMains on c.ConnectionID equals cg.ConnectionID
+                                 where a.UserID == strUserID
+                                 select new Cls_Menu
+                                 {                                
+                                 MenuName =    h.MenuText,
+                                 QueryID=    c.QueryID
+                                 };
+                   
+                    obj_dataTable = result.Distinct().ToList();
+
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                // MsgBox(ex.Message, MsgBoxStyle.Critical, "AddUpdateBridgeValues General Error");
+            }
+            return obj_dataTable;
+
+
+        }
+
+
         public void Dispose()
         {
            /// _context.Dispose() ;

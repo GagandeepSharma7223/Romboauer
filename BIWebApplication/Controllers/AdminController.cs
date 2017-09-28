@@ -22,7 +22,7 @@ namespace BIWebApplication.Controllers
 
         private IUserRepository repo;
         private ApplicationUserManager _userManager;
-
+        private ApplicationSignInManager _signInManager;
         public AdminController()
         {
             repo = new UserRepository();
@@ -45,7 +45,17 @@ namespace BIWebApplication.Controllers
             lstUsers = repo.GetUsers();            
             return View(lstUsers);
         }
-
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
         [ValidateInput(false)]
         public ActionResult EditModesPartial()
         {
@@ -80,6 +90,7 @@ namespace BIWebApplication.Controllers
                         var result = UserManager.Create(usernew, user.ChangePassword);
                         if (result.Succeeded)
                         {
+                            await SignInManager.SignInAsync(usernew, isPersistent: false, rememberBrowser: false);
                             user.ASPNetUsersID = usernew.Id;
                             string fullname = user.UserFullName.Replace('"', ' ').Trim();
 

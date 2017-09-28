@@ -69,7 +69,7 @@
 
             settings.Columns.Add("Email");
 
-            
+
             settings.CustomJSProperties = (sender, e) =>
             {
                 MVCxGridView gridView = (MVCxGridView)sender;
@@ -83,7 +83,7 @@
 
             settings.ClientSideEvents.BeginCallback = "function(s, e) { if(s.cpMiddleName) e.customArgs['ASPNetUsersID'] =  s.cpMiddleName; }";
 
-            
+
             settings.Columns.Add(column =>
             {
                 column.FieldName = "PhoneNumber";
@@ -97,13 +97,15 @@
                 column.EditFormSettings.Visible = DefaultBoolean.False;
                 column.SetDataItemTemplateContent(container =>
                 {
+
                     Html.DevExpress().HyperLink(hyperlink =>
                     {
                         var visibleIndex = container.VisibleIndex;
-                        var keyValue = container.KeyValue;
-                        hyperlink.Name = "hl" + keyValue.ToString();
+                        var UserId = container.KeyValue;
+                        var gId = DataBinder.Eval(container.DataItem, "GroupID").ToString();
+                        hyperlink.Name = "hl" + UserId.ToString();
                         hyperlink.Properties.Text = "Navision Rights";
-                        hyperlink.NavigateUrl = "javascript:OnHyperLinkClick('" + keyValue + "');";
+                        hyperlink.NavigateUrl = "javascript:OnHyperLinkClick('" + UserId + "','" + gId + "');";
                     }).Render();
                 });
             });
@@ -151,17 +153,10 @@
 }).GetHtml()
 
 <script>
-    var currentCustomerID;
-    function OnHyperLinkClick(customerID) {
-        alert(customerID);
+    
+    function OnHyperLinkClick(userId,groupId) {
         if (!AdminUserVariablesCascade.IsVisible())
             AdminUserVariablesCascade.Show();
     }
-    //function OnDetailGridBeginCallback(s, e) {
-    //    e.customArgs["UserId"] = currentCustomerID;
-    //}
-    //function OnDetailGridEndCallback(s, e) {
-    //    if (!AdminUserVariablesCascade.IsVisible())
-    //        AdminUserVariablesCascade.Show();
-    //}
+    
 </script>

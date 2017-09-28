@@ -17,6 +17,7 @@ D:\Projects\Carmody Technologies\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebAp
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationBLL.dll.config
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationBLL.dll
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationBLL.pdb
+E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationDAL.dll
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\EntityFramework.dll
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\EntityFramework.SqlServer.dll
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\System.Data.SQLite.dll
@@ -26,7 +27,6 @@ E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationDAL.pdb
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\EntityFramework.xml
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\EntityFramework.SqlServer.xml
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\System.Data.SQLite.xml
+E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.csprojResolveAssemblyReference.cache
 E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.dll
 E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.pdb
-E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationDAL.dll
-E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.csprojResolveAssemblyReference.cache

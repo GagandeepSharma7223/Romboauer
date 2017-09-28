@@ -70,11 +70,13 @@
   <ItemGroup>
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Cls_Menu.cs" />
     <Compile Include="Repository\Cls_User_Profile.cs" />
     <Compile Include="Repository\Cls_Website.cs" />
+    <Compile Include="Repository\HierarchicalCollectionDataSource.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

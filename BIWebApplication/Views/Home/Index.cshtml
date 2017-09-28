@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BIWebApplicationBLL.Models.CategoriesData
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -13,22 +15,15 @@
     </script>
     <div class="vertComponentContainer" style="padding-top:5px; padding-right: 50px; width: 180px;">
         @Html.DevExpress().Menu(
-        settings =>
-        {
-            settings.Name = "mClientSideAPI";
-            settings.AllowSelectItem = true;
-            settings.EnableClientSideAPI = true;
-            settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
-            
+    settings =>
+    {
+        settings.Name = "mDataBindingToModel";
+        settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
+        settings.ShowPopOutImages = DefaultBoolean.True;
+    }).Bind(Model).GetHtml()
 
-            settings.Items.Add("Visa", "Visa").Selected = true;
-            settings.Items.Add("MasterCard", "MasterCard");
-            settings.Items.Add("Union", "Union");
-            settings.Items.Add("American Express", "American Express");
-            settings.Items.Add("Maestro", "Maestro");
 
-            
-        }).GetHtml()
+        
     </div>
     
 </div>

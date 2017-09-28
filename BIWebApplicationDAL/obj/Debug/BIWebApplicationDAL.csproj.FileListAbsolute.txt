@@ -25,3 +25,4 @@ E:\Romboauer\BIWebApplicationDAL\bin\Debug\EntityFramework.SqlServer.xml
 E:\Romboauer\BIWebApplicationDAL\bin\Debug\System.Data.SQLite.xml
 E:\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.dll
 E:\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.pdb
+E:\Romboauer\BIWebApplicationDAL\obj\Debug\BIWebApplicationDAL.csprojResolveAssemblyReference.cache

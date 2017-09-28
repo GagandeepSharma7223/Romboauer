@@ -1,4 +1,5 @@
 ﻿using BIWebApplicationBLL.Models;
+using BIWebApplicationBLL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace BIWebApplicationBLL.Interface
         long? GetCompanyID(long userId);
         long GetUserId(string aspuserId);
         bool UpdateUser(UserModel model);
+        List<Cls_Menu> LoadMenuDataTable(long strUserID);
     }
 }

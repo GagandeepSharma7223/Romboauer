@@ -21,8 +21,9 @@ namespace BIWebApplicationBLL.Repository
             {
                 using (var db = new BIWebModel())
                 {
-                    var query = db.tblUsers.Join(db.AspNetUsers, r => r.ASPNetUsersID, p => p.Id, (r, p) => new { r.UserID, p.UserName }).Where(m => m.UserName.ToLower() == userName.ToLower());
+                    var query = db.tblUsers.Where(x => x.ASPNetUsersID == userName);
                     strReturn = Convert.ToInt32(query.Select(x => x.UserID).FirstOrDefault());
+
 
                 }
             }
@@ -88,7 +89,7 @@ namespace BIWebApplicationBLL.Repository
                                  where a.UserID == strUserID
                                  select new Cls_Menu
                                  {
-                                MenuID =  h.MenuID,
+                               // MenuID =  h.MenuID,
                                  MenuName =    h.MenuText,
                                  QueryID=    c.QueryID
                                  };
