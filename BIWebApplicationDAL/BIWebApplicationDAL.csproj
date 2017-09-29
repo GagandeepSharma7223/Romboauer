@@ -75,15 +75,20 @@
     <Compile Include="tblGroup.cs" />
     <Compile Include="tblGroupMenu.cs" />
     <Compile Include="tblQueryColumn.cs" />
+    <Compile Include="tblQueryColumnsDataFormat.cs" />
     <Compile Include="tblQueryConnection.cs" />
     <Compile Include="tblQueryDetail.cs" />
     <Compile Include="tblQueryMain.cs" />
     <Compile Include="tblQueryParameter.cs" />
     <Compile Include="tblUser.cs" />
+    <Compile Include="tblUsersCount.cs" />
+    <Compile Include="tblUsersQueryParameters.cs" />
+    <Compile Include="tblUsersQueryParametersBridge.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="App_Data\BIWebApplication.db" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

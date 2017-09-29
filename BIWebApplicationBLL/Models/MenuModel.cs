@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BIWebApplicationBLL.Interface;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using BIWebApplicationBLL.Repository;
+using BIWebApplicationDAL;
 
 namespace BIWebApplicationBLL.Models
 {
@@ -77,8 +80,50 @@ namespace BIWebApplicationBLL.Models
     }
 
     public class CategoriesData : ItemsData {
+        //UserRepository repcls = new UserRepository();
+        //private IUserRepository repo;
 
-        List<Category> testlst = new List<Category> { new Category {CategoryID = 1,CategoryName= "Test" } };
+       
+
+        List<Category> testlst = LoadMenu(Convert.ToInt32(System.Web.HttpContext.Current.Session["UserID"]));//new List<Category> { new Category {CategoryID = 1,CategoryName= "Test" } };
+
+        
+        public static List<Category> LoadMenu(long strUserID)
+        {
+            List<Category> obj_dataTable = new List<Category>();
+            try
+            {
+                using (var db = new BIWebModel())
+                {
+                    var result = from a in db.tblUsers
+                                 join h in db.tblGroupMenus on a.GroupID equals h.GroupID
+                                 join c in db.tblQueryMains on h.MenuID equals c.MenuID
+                                 join cg in db.tblQueryMains on c.ConnectionID equals cg.ConnectionID
+                                 where a.UserID == strUserID
+                                 select new Category
+                                 {
+                                     CategoryName = h.MenuText,
+                                     CategoryID = c.QueryID
+                                 };
+
+                    obj_dataTable = result.Distinct().ToList();
+
+                    long userId = Convert.ToInt32(System.Web.HttpContext.Current.Session["UserID"]);
+                    if(userId == 1)
+                    {
+
+                        obj_dataTable.Add(new Category() { CategoryName = "User Admin", CategoryID = 10 });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // MsgBox(ex.Message, MsgBoxStyle.Critical, "AddUpdateBridgeValues General Error");
+            }
+            return obj_dataTable;
+
+
+        }
 
         public override IEnumerable Data {
             get { return testlst.Select(c => new CategoryData(c)); }
@@ -86,7 +131,7 @@ namespace BIWebApplicationBLL.Models
     }
 
     public class Category{
-        public int CategoryID { get; set; }
+        public long CategoryID { get; set; }
         public string CategoryName { get; set; }
     }
     public class CategoryData : ItemData
@@ -101,7 +146,7 @@ namespace BIWebApplicationBLL.Models
 
         protected override bool HasChildren()
         {
-            return true;
+            return false;
         }
         //protected override IHierarchicalEnumerable CreateChildren()
         //{

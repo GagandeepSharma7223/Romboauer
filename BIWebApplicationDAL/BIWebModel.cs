@@ -25,7 +25,11 @@ namespace BIWebApplicationDAL
         public virtual DbSet<tblQueryMain> tblQueryMains { get; set; }
         public virtual DbSet<tblQueryParameter> tblQueryParameters { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblUsersQueryParameters> tblUsersQueryParameters { get; set; }
+        public virtual DbSet<tblUsersQueryParametersBridge> tblUsersQueryParametersBridges { get; set; }
+        public virtual DbSet<tblUsersCount> tblUsersCounts { get; set; }
 
+        public virtual DbSet<tblQueryColumnsDataFormat> tblQueryColumnsDataFormats { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRole>()

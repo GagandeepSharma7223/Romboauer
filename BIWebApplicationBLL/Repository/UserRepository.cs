@@ -168,6 +168,38 @@ namespace BIWebApplicationBLL.Repository
 
         }
 
+        public List<Category> LoadMenu(long strUserID)
+        {
+            List<Category> obj_dataTable = new List<Category>();
+            try
+            {
+                using (var db = new BIWebModel())
+                {
+                    var result = from a in db.tblUsers
+                                 join h in db.tblGroupMenus on a.GroupID equals h.GroupID
+                                 join c in db.tblQueryMains on h.MenuID equals c.MenuID
+                                 join cg in db.tblQueryMains on c.ConnectionID equals cg.ConnectionID
+                                 where a.UserID == strUserID
+                                 select new Category
+                                 {
+                                     CategoryName = h.MenuText,
+                                     CategoryID = c.QueryID
+                                 };
+
+                    obj_dataTable = result.Distinct().ToList();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // MsgBox(ex.Message, MsgBoxStyle.Critical, "AddUpdateBridgeValues General Error");
+            }
+            return obj_dataTable;
+
+
+        }
+
 
         public void Dispose()
         {

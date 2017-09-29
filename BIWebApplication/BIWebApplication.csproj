@@ -401,6 +401,7 @@
     <Content Include="Views\Admin\_EditAdminUsers.cshtml" />
     <Content Include="Views\Admin\_AdminUserVariablesCascade.cshtml" />
     <Content Include="Views\Admin\_AdminUsersVariables.cshtml" />
+    <Content Include="Views\Home\DataGridMain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BIWebApplicationBLL\BIWebApplicationBLL.csproj">

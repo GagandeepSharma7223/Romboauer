@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IMainGridRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
@@ -76,7 +77,9 @@
     <Compile Include="Repository\Cls_Menu.cs" />
     <Compile Include="Repository\Cls_User_Profile.cs" />
     <Compile Include="Repository\Cls_Website.cs" />
-    <Compile Include="Repository\HierarchicalCollectionDataSource.cs" />
+    <Compile Include="Repository\DataDetails.cs" />
+    <Compile Include="Repository\EncryptString.cs" />
+    <Compile Include="Repository\MainGridRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

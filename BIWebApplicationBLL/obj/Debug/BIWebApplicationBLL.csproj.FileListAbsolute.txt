@@ -27,6 +27,6 @@ E:\Romboauer\BIWebApplicationBLL\bin\Debug\BIWebApplicationDAL.pdb
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\EntityFramework.xml
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\EntityFramework.SqlServer.xml
 E:\Romboauer\BIWebApplicationBLL\bin\Debug\System.Data.SQLite.xml
-E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.csprojResolveAssemblyReference.cache
 E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.dll
 E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.pdb
+E:\Romboauer\BIWebApplicationBLL\obj\Debug\BIWebApplicationBLL.csprojResolveAssemblyReference.cache
