@@ -6,8 +6,11 @@ namespace BIWebApplicationDAL
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    public partial class tblUsersQueryParametersBridge
+
+    [Table("tblQueryParametersBridge")]
+    public partial class tblQueryParametersBridge
     {
+        [Key]
         public long ParameterID { get; set; }
         public long QueryID { get; set; }
     }

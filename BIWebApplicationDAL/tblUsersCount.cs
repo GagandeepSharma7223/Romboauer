@@ -8,6 +8,7 @@ namespace BIWebApplicationDAL
     using System.Data.Entity.Spatial;
    public partial class tblUsersCount
     {
+        [Key]
         public long UserID { get; set; }
 
         public long ReportCount { get; set; }

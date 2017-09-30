@@ -30,10 +30,8 @@ namespace BIWebApplicationBLL.Repository
         {
             using (var _context = new BIWebModel())
             {
-
-
-                var queryInfo = from p in _context.tblUsersQueryParameters
-                                join pType in _context.tblUsersQueryParametersBridges
+                 var queryInfo = from p in _context.tblUsersQueryParameters
+                                join pType in _context.tblQueryParametersBridges
                                 on p.ParameterID equals pType.ParameterID
                                 join pT in _context.tblQueryParameters
                                on pType.ParameterID equals pT.ParameterID
@@ -79,7 +77,7 @@ namespace BIWebApplicationBLL.Repository
             {
 
                 var queryInfo = from p in _context.tblQueryColumns
-                                join pType in _context.tblQueryColumnsDataFormats
+                                join pType in _context.tblQueryColumnsDataFormat
                                 on p.ColumnID equals pType.ColumnID
                                 where p.QueryID == queryId
                                 select new CreateColumnDataFormatValue { ColumnName = p.ColumnName, ColumnDataFormula = pType.ColumnDataFormula, ColumnDataFormatForeColor = pType.ColumnDataFormatForeColor, ColumnDataFormatBackColor = pType.ColumnDataFormatBackColor };

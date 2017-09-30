@@ -26,10 +26,10 @@ namespace BIWebApplicationDAL
         public virtual DbSet<tblQueryParameter> tblQueryParameters { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblUsersQueryParameters> tblUsersQueryParameters { get; set; }
-        public virtual DbSet<tblUsersQueryParametersBridge> tblUsersQueryParametersBridges { get; set; }
+        public virtual DbSet<tblQueryParametersBridge> tblQueryParametersBridges { get; set; }
         public virtual DbSet<tblUsersCount> tblUsersCounts { get; set; }
 
-        public virtual DbSet<tblQueryColumnsDataFormat> tblQueryColumnsDataFormats { get; set; }
+        public virtual DbSet<tblQueryColumnsDataFormat> tblQueryColumnsDataFormat { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRole>()
@@ -87,11 +87,14 @@ namespace BIWebApplicationDAL
                 .WithRequired(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
-
+            modelBuilder.Entity<tblQueryParametersBridge>().ToTable("tblQueryParametersBridge");
+            modelBuilder.Entity<tblQueryColumnsDataFormat>().ToTable("tblQueryColumnsDataFormat");
             modelBuilder.Entity<AspNetUser>()
                 .HasMany(e => e.AspNetRoles)
                 .WithMany(e => e.AspNetUsers)
                 .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("UserId").MapRightKey("RoleId"));
+
+
         }
     }
 }

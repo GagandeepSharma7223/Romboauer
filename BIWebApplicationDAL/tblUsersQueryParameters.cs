@@ -9,6 +9,7 @@ namespace BIWebApplicationDAL
 
     public partial class tblUsersQueryParameters
     {
+        [Key]
         public long UserID { get; set; }
 
         public long ParameterID { get; set; }
