@@ -19,8 +19,8 @@ namespace BIWebApplicationBLL.Repository
 
             using ( var connection = new SqlConnection())
             {
-                connection.ConnectionString = objEncrypt.DecryptData(strConnection);
-                 
+                connection.ConnectionString = objEncrypt.DecryptData(strConnection); //"Data Source=DESKTOP-UV748D4\\MSSQLSERVER2014;Initial Catalog=Romboauer;Integrated Security=SSPI;"; //
+
                 AddCommandParameters(datParameters, ref query);
                 using (var command = new SqlCommand(query, connection))
                 {
