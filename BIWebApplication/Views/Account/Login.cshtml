@@ -60,7 +60,7 @@
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             @Html.DevExpress().CheckBoxFor(model => model.RememberMe,
@@ -74,7 +74,7 @@
 ).GetHtml()
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         @Html.DevExpress().Button(settings =>
@@ -96,11 +96,11 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
-    </div>
+    </div>*@
 </div>
 
 

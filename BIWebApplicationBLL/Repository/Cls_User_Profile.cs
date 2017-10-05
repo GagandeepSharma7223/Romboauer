@@ -23,8 +23,6 @@ namespace BIWebApplicationBLL.Repository
                 {
                     var query = db.tblUsers.Where(x => x.ASPNetUsersID == userName);
                     strReturn = Convert.ToInt32(query.Select(x => x.UserID).FirstOrDefault());
-
-
                 }
             }
             catch (SQLiteException ex)

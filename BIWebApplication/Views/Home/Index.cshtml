@@ -6,13 +6,6 @@
 
 
 <div class="row">
-    <script type="text/javascript">
-    $(document).ready(function () {
-        
-      
-    });
-   
-    </script>
     <div class="vertComponentContainer" style="padding-top:5px; padding-right: 50px; width: 180px;">
         @Html.DevExpress().Menu(
     settings =>
@@ -21,9 +14,5 @@
         settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
         settings.ShowPopOutImages = DefaultBoolean.True;
     }).Bind(Model).GetHtml()
-
-
-        
     </div>
-    
 </div>

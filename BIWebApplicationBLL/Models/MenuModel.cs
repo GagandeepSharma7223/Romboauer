@@ -40,7 +40,7 @@ namespace BIWebApplicationBLL.Models
         public ItemData(string text, string navigateUrl)
         {
             Text = text;
-            NavigateUrl = navigateUrl;
+            NavigateUrl = navigateUrl.Contains("10") ? "Admin/AdminUsers" : navigateUrl;
         }
 
         // IHierarchyData
@@ -79,15 +79,16 @@ namespace BIWebApplicationBLL.Models
         }
     }
 
-    public class CategoriesData : ItemsData {
+    public class CategoriesData : ItemsData
+    {
         //UserRepository repcls = new UserRepository();
         //private IUserRepository repo;
 
-       
+
 
         List<Category> testlst = LoadMenu(Convert.ToInt32(System.Web.HttpContext.Current.Session["UserID"]));//new List<Category> { new Category {CategoryID = 1,CategoryName= "Test" } };
 
-        
+
         public static List<Category> LoadMenu(long strUserID)
         {
             List<Category> obj_dataTable = new List<Category>();
@@ -109,7 +110,7 @@ namespace BIWebApplicationBLL.Models
                     obj_dataTable = result.Distinct().ToList();
 
                     long userId = Convert.ToInt32(System.Web.HttpContext.Current.Session["UserID"]);
-                    if(userId == 1)
+                    if (userId == 1)
                     {
 
                         obj_dataTable.Add(new Category() { CategoryName = "User Admin", CategoryID = 10 });
@@ -125,12 +126,14 @@ namespace BIWebApplicationBLL.Models
 
         }
 
-        public override IEnumerable Data {
+        public override IEnumerable Data
+        {
             get { return testlst.Select(c => new CategoryData(c)); }
         }
     }
 
-    public class Category{
+    public class Category
+    {
         public long CategoryID { get; set; }
         public string CategoryName { get; set; }
     }
